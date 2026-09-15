@@ -24,7 +24,18 @@ javascript = javascript.replace(/<\/script/gi, '<\\/script')
 
 html = html
     .replace(stylesheetMatch[0], () => `<style>${css}</style>`)
-    .replace(scriptMatch[0], () => `<script>${javascript}</script>`)
+
+// Vite can move module scripts into the document head. Modules are deferred,
+// but a classic inline script is not, so it would execute before #root exists.
+// Remove it first, then place the standalone bundle after the mount element.
+html = html.replace(scriptMatch[0], '')
+
+const standaloneScript = `<script>${javascript}</script>`
+if (html.includes('<div id="root"></div>')) {
+    html = html.replace('<div id="root"></div>', `<div id="root"></div>\n  ${standaloneScript}`)
+} else {
+    html = html.replace('</body>', `  ${standaloneScript}\n</body>`)
+}
 
 await writeFile(htmlPath, html, 'utf8')
 console.log('dist/index.html pronto para abrir diretamente no navegador.')
