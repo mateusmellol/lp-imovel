@@ -1,0 +1,26 @@
+/* Tailwind entra sem o preflight. O reset dele zera margens, tipografia e
+   bordas no documento inteiro e a LP já tem o próprio reset em styles.css —
+   importar "tailwindcss" inteiro apagaria o sistema visual da página. */
+@layer theme, base;
+@import "tailwindcss/theme.css" layer(theme);
+/* utilities fora de layer: as regras de elemento da LP (`p { font-size: 20px }`,
+   `p + p { margin-top: 24px }`) são unlayered e venceriam qualquer utility em
+   layer, independente de especificidade. */
+/* source(none) desliga a detecção automática: o projeto não é um repo git, então
+   nada entra no ignore e o Tailwind varreria dist/ e README.md — cada build
+   incorporaria as classes do build anterior e o CSS cresceria sozinho. */
+@import "tailwindcss/utilities.css" source(none);
+@source "./components/ui/**/*.{ts,tsx,js,jsx}";
+@source "./main.jsx";
+
+/* Pedaço do preflight que as utilities precisam, restrito a quem opta por ele
+   via `.tw`. Sem isto, `border-b` define border-width mas o border-style segue
+   `none` e a borda não aparece. */
+@layer base {
+  .tw,
+  .tw * {
+    border-width: 0;
+    border-style: solid;
+    border-color: currentColor;
+  }
+}

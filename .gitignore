@@ -1,0 +1,15 @@
+# Dependencies and generated output
+node_modules/
+dist/
+
+# Local browser QA profiles: never version or share
+.chrome-qa/
+.edge-qa/
+
+# Local environment and editor files
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+.vscode/
