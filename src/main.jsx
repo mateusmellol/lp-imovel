@@ -677,43 +677,49 @@ function App() {
         </section>
         <section className="section trust">
           <div className="wrap trust-layout">
-            <RevealBlock className="trust-heading">
-              <span className="icon">
-                <ShieldCheck strokeWidth={1.5} />
-              </span>
-              <h2>Antes de decidir, você confere por conta própria</h2>
+            <RevealBlock className="trust-image">
+              <img
+                loading="lazy"
+                src={asset("trust-consultation-v3.webp")}
+                alt="Duas pessoas conversando sobre uma mesa."
+              />
             </RevealBlock>
             <div className="trust-content">
-              <RevealBlock className="trust-point" index={0}>
-                <span className="trust-number">01</span>
+              <RevealBlock className="trust-heading" index={0}>
+                <h2>Antes de decidir, você confere por conta própria</h2>
+              </RevealBlock>
+              <RevealBlock className="trust-copy" index={1}>
                 <p>
-                  As administradoras de consórcio são autorizadas e fiscalizadas
-                  pelo Banco Central.
+                  O consórcio de imóvel é regulado pelo Banco Central, e a
+                  administradora parceira da Directcon segue as normas da ABAC.
+                  Você pode checar o CNPJ, a autorização de funcionamento e o
+                  histórico da empresa antes de qualquer contrato.
                 </p>
               </RevealBlock>
-              <RevealBlock className="trust-point" index={1}>
-                <span className="trust-number">02</span>
-                <p>
-                  Antes da contratação, você pode consultar o CNPJ, a autorização
-                  de funcionamento e o histórico da administradora responsável
-                  pelo grupo. A Directcon orienta essa verificação com você.
-                </p>
-              </RevealBlock>
-              <RevealBlock className="trust-point" index={2}>
-                <span className="trust-number">03</span>
+              <RevealBlock className="trust-verification" index={2}>
                 <p>
                   Pagamentos e negociação de cota acontecem só pelos canais
                   oficiais da Directcon e da administradora. Desconfie de qualquer
                   cobrança fora disso.
                 </p>
+                <Info size={30} strokeWidth={1.5} aria-hidden="true" />
               </RevealBlock>
-              <RevealBlock className="trust-action" index={3}>
+              <RevealBlock className="trust-regulatory-summary" index={3}>
+                <div className="trust-regulatory-line">
+                  <div className="trust-regulatory-item">
+                    <img src={asset("trust-bacen-wordmark.png")} alt="Banco Central do Brasil" />
+                  </div>
+                  <div className="trust-regulatory-item">
+                    <img src={asset("trust-susep-wordmark.png")} alt="SUSEP" />
+                  </div>
+                </div>
                 <a
                   className="text-link"
                   href="https://www.bcb.gov.br/meubc/encontreinstituicao"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  Consultar instituições no Banco Central{" "}
-                  <ArrowUpRight size={18} />
+                  Conferir dados oficiais <ArrowUpRight size={18} />
                 </a>
               </RevealBlock>
             </div>
